@@ -49,7 +49,7 @@ export default async function DetailPage({
         {/* Left Column */}
         <div className={styles.main}>
           {/* Gallery */}
-          <DetailGallery images={listing.images} brandName={listing.brandName} title={listing.title} />
+          <DetailGallery images={listing.images} brandName={listing.brandName} title={listing.title} videoUrl={listing.videoUrl} panorama360Url={listing.panorama360Url} />
 
           {/* Title Block */}
           <section className={styles.titleBlock}>

@@ -10,9 +10,11 @@ interface DetailGalleryProps {
   images: ListingImage[];
   brandName: string;
   title: string;
+  videoUrl?: string;
+  panorama360Url?: string;
 }
 
-export function DetailGallery({ images, brandName, title }: DetailGalleryProps) {
+export function DetailGallery({ images, brandName, title, videoUrl, panorama360Url }: DetailGalleryProps) {
   const [gridOpen, setGridOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
@@ -90,6 +92,8 @@ export function DetailGallery({ images, brandName, title }: DetailGalleryProps) 
         <GalleryGridModal
           images={images}
           title={title}
+          videoUrl={videoUrl}
+          panorama360Url={panorama360Url}
           onClose={() => setGridOpen(false)}
           onSelectImage={(index) => openLightboxFromGrid(index)}
         />

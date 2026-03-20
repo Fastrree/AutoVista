@@ -49,6 +49,7 @@ export interface Listing {
   // Media
   images: ListingImage[];
   videoUrl?: string;
+  panorama360Url?: string;
 
   // Features / Equipment
   features: string[];
