@@ -20,6 +20,8 @@ const realLogoBrands = new Set([
   "byd",
   "aurus",
   "jeep",
+  "landrover",
+  "maserati",
 ]);
 
 interface BrandLogoProps {
