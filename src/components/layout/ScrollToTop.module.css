@@ -1,0 +1,106 @@
+.btn {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 900;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  backdrop-filter: blur(12px);
+  padding: 0;
+  overflow: hidden;
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition:
+    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover */
+.btn:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 20px var(--accent-muted);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* Wheel SVG */
+.wheel {
+  transition: filter 0.3s ease;
+}
+
+.btn:hover .wheel {
+  filter: drop-shadow(0 0 6px var(--accent-muted));
+}
+
+/* ─── Smoke Cloud - hover animation ─── */
+.smokeCloud {
+  transition: opacity 0.4s ease;
+}
+
+.btn:hover .smokeCloud {
+  animation: smokeDrift 2s ease-in-out infinite;
+}
+
+@keyframes smokeDrift {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-4px);
+  }
+}
+
+/* ─── Speed dashes - hover pulse ─── */
+.speedDash {
+  transition: opacity 0.3s ease;
+}
+
+.btn:hover .speedDash {
+  animation: dashPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes dashPulse {
+  0% { opacity: 0.2; }
+  100% { opacity: 0.6; }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 640px) {
+  .btn {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 60px;
+    height: 60px;
+  }
+
+  .wheel {
+    width: 48px;
+    height: 48px;
+  }
+}

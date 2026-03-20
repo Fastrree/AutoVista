@@ -1,0 +1,210 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Image */
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--bg-input);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--text-tertiary);
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+}
+
+.badges {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.verifiedBadge {
+  font-size: 0.65rem;
+}
+
+.cardActions {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 2;
+}
+
+.card:hover .cardActions {
+  opacity: 1;
+}
+
+.priceOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+}
+
+.price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-xl);
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+/* Content */
+.content {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-base);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.trim {
+  font-size: var(--text-xs);
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+.specs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.spec {
+  white-space: nowrap;
+}
+
+.dot {
+  color: var(--text-tertiary);
+  font-size: var(--text-xs);
+}
+
+.power {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.featureTag {
+  padding: 1px var(--space-sm);
+  background: var(--accent-muted);
+  color: var(--accent-text);
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.featureMore {
+  padding: 1px var(--space-sm);
+  background: var(--bg-input);
+  color: var(--text-tertiary);
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* Condition */
+.condition {
+  font-size: var(--text-xs);
+}
+
+.conditionClean {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.conditionWarning {
+  color: var(--warning);
+  font-weight: 500;
+}
+
+/* Bottom */
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.seller {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+.sellerType {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.location {
+  white-space: nowrap;
+}
+
+/* Why Consider */
+.whyConsider {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+  line-height: 1.4;
+  margin-top: var(--space-xs);
+}
