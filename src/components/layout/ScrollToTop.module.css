@@ -1,106 +1,154 @@
-.btn {
+/* ═══════════════════════════════════
+   ScrollToTop — Burnout Edition
+   Canvas parçacık + SVG tekerlek
+   ═══════════════════════════════════ */
+
+/* ── Sahne ── */
+.stage {
   position: fixed;
   bottom: var(--space-xl);
   right: var(--space-xl);
   z-index: 900;
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-elevated);
-  backdrop-filter: blur(12px);
-  padding: 0;
-  overflow: hidden;
+  pointer-events: none;
 
-  /* Hidden by default */
   opacity: 0;
   transform: translateY(20px) scale(0.8);
-  pointer-events: none;
   transition:
     opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s ease,
-    border-color 0.3s ease;
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .visible {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Hover */
-.btn:hover {
-  border-color: var(--accent);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 0 20px var(--accent-muted);
-  transform: translateY(-3px) scale(1.06);
+/* ── Canvas (duman + kıvılcım) ── */
+.canvas {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  pointer-events: none;
+  z-index: 1;
+  /* Organik duman: blur + kontrast + ışıma */
+  filter: blur(1.5px) contrast(1.1);
+  mix-blend-mode: screen;
 }
 
-.btn:active {
-  transform: translateY(0) scale(0.96);
+/* ── Ana Buton ── */
+.btn {
+  position: relative;
+  z-index: 2;
+  width: 72px;
+  height: 80px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-/* Wheel SVG */
-.wheel {
-  transition: filter 0.3s ease;
+/* Tıklama anı — basınç hissi */
+.btn:active .wheelWrapper {
+  transform: scale(0.92) translateY(3px);
 }
 
-.btn:hover .wheel {
-  filter: drop-shadow(0 0 6px var(--accent-muted));
+/* ── Tekerlek Wrapper ── */
+.wheelWrapper {
+  transition: transform 0.15s ease, filter 0.3s ease;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
-/* ─── Smoke Cloud - hover animation ─── */
-.smokeCloud {
-  transition: opacity 0.4s ease;
+.btn:hover .wheelWrapper {
+  filter:
+    drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 8px var(--accent-muted));
 }
 
-.btn:hover .smokeCloud {
-  animation: smokeDrift 2s ease-in-out infinite;
+.burning .wheelWrapper {
+  animation: vibrate 0.04s infinite;
 }
 
-@keyframes smokeDrift {
-  0%, 100% {
-    opacity: 0.5;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 0.3;
-    transform: translateX(-4px);
-  }
+@keyframes vibrate {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1.5px, -1px); }
+  50% { transform: translate(-1px, 1.5px); }
+  75% { transform: translate(1px, -0.5px); }
 }
 
-/* ─── Speed dashes - hover pulse ─── */
-.speedDash {
-  transition: opacity 0.3s ease;
+/* ── SVG Tekerlek ── */
+.wheelSvg {
+  display: block;
 }
 
-.btn:hover .speedDash {
-  animation: dashPulse 1s ease-in-out infinite alternate;
+/* Sırt deseni dönüşü — sadece burning sırasında */
+.treadRing {
+  transform-origin: 50px 50px;
+  transition: filter 0.2s ease;
 }
 
-@keyframes dashPulse {
-  0% { opacity: 0.2; }
-  100% { opacity: 0.6; }
+.burning .treadRing {
+  animation: spin 0.08s linear infinite;
+  /* Yüksek hızda hareket bulanıklığı */
+  filter: blur(0.5px);
 }
 
-/* ─── Mobile ─── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Yer çizgisi: Hareketli asfalt ── */
+.ground {
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: var(--text-tertiary);
+  opacity: 0.2;
+  border-radius: 1px;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+}
+
+.burning .ground {
+  opacity: 0.8;
+  height: 2.5px;
+  /* Akan asfalt dokusu — ateşli vurgularla */
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 100, 0, 0.6) 20%,
+    var(--text-tertiary) 50%,
+    rgba(255, 100, 0, 0.6) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: groundFlow 0.15s linear infinite;
+  box-shadow: 0 0 15px rgba(255, 60, 0, 0.5);
+}
+
+@keyframes groundFlow {
+  from { background-position: 100% 0%; }
+  to { background-position: -100% 0%; }
+}
+
+/* ── Mobile ── */
 @media (max-width: 640px) {
-  .btn {
+  .stage {
     bottom: var(--space-lg);
     right: var(--space-lg);
-    width: 60px;
-    height: 60px;
   }
 
-  .wheel {
-    width: 48px;
-    height: 48px;
+  .btn {
+    width: 60px;
+    height: 68px;
+  }
+
+  .wheelSvg {
+    width: 50px;
+    height: 50px;
   }
 }
