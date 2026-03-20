@@ -108,6 +108,9 @@ const priceRanges: Record<string, { min: number; max: number }> = {
   jeep: { min: 25000, max: 90000 },
   landrover: { min: 40000, max: 200000 },
   maserati: { min: 60000, max: 250000 },
+  volkswagen: { min: 15000, max: 60000 },
+  toyota: { min: 12000, max: 80000 },
+  nissan: { min: 12000, max: 120000 },
 };
 
 const currencyMultipliers: Record<string, number> = {

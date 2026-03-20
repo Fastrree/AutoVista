@@ -17,6 +17,9 @@ export const brands: Brand[] = [
   { id: "jeep", name: "Jeep", slug: "jeep", countryCode: "US", isActive: true },
   { id: "landrover", name: "Land Rover", slug: "land-rover", countryCode: "GB", isActive: true },
   { id: "maserati", name: "Maserati", slug: "maserati", countryCode: "IT", isActive: true },
+  { id: "volkswagen", name: "Volkswagen", slug: "volkswagen", countryCode: "DE", isActive: true },
+  { id: "toyota", name: "Toyota", slug: "toyota", countryCode: "JP", isActive: true },
+  { id: "nissan", name: "Nissan", slug: "nissan", countryCode: "JP", isActive: true },
 ];
 
 // ─── Models per Brand (Real vehicles) ───
@@ -140,6 +143,30 @@ export const models: Model[] = [
   { id: "maserati-mc20", brandId: "maserati", name: "MC20", slug: "mc20", segment: "supercar", bodyTypeDefault: "supercar" },
   { id: "maserati-grecale", brandId: "maserati", name: "Grecale", slug: "grecale", segment: "suv", bodyTypeDefault: "suv" },
   { id: "maserati-granturismo", brandId: "maserati", name: "GranTurismo", slug: "granturismo", segment: "gt", bodyTypeDefault: "coupe" },
+
+  // Volkswagen
+  { id: "vw-golf", brandId: "volkswagen", name: "Golf", slug: "golf", segment: "compact", bodyTypeDefault: "hatchback" },
+  { id: "vw-passat", brandId: "volkswagen", name: "Passat", slug: "passat", segment: "midsize", bodyTypeDefault: "sedan" },
+  { id: "vw-tiguan", brandId: "volkswagen", name: "Tiguan", slug: "tiguan", segment: "suv", bodyTypeDefault: "suv" },
+  { id: "vw-polo", brandId: "volkswagen", name: "Polo", slug: "polo", segment: "compact", bodyTypeDefault: "hatchback" },
+  { id: "vw-arteon", brandId: "volkswagen", name: "Arteon", slug: "arteon", segment: "executive", bodyTypeDefault: "sedan" },
+  { id: "vw-id4", brandId: "volkswagen", name: "ID.4", slug: "id-4", segment: "suv", bodyTypeDefault: "suv" },
+
+  // Toyota
+  { id: "toyota-corolla", brandId: "toyota", name: "Corolla", slug: "corolla", segment: "compact", bodyTypeDefault: "sedan" },
+  { id: "toyota-camry", brandId: "toyota", name: "Camry", slug: "camry", segment: "midsize", bodyTypeDefault: "sedan" },
+  { id: "toyota-rav4", brandId: "toyota", name: "RAV4", slug: "rav4", segment: "suv", bodyTypeDefault: "suv" },
+  { id: "toyota-yaris", brandId: "toyota", name: "Yaris", slug: "yaris", segment: "compact", bodyTypeDefault: "hatchback" },
+  { id: "toyota-supra", brandId: "toyota", name: "GR Supra", slug: "gr-supra", segment: "sport", bodyTypeDefault: "coupe" },
+  { id: "toyota-landcruiser", brandId: "toyota", name: "Land Cruiser", slug: "land-cruiser", segment: "suv", bodyTypeDefault: "suv" },
+
+  // Nissan
+  { id: "nissan-qashqai", brandId: "nissan", name: "Qashqai", slug: "qashqai", segment: "suv", bodyTypeDefault: "suv" },
+  { id: "nissan-juke", brandId: "nissan", name: "Juke", slug: "juke", segment: "suv", bodyTypeDefault: "suv" },
+  { id: "nissan-xtrail", brandId: "nissan", name: "X-Trail", slug: "x-trail", segment: "suv", bodyTypeDefault: "suv" },
+  { id: "nissan-gtr", brandId: "nissan", name: "GT-R", slug: "gt-r", segment: "supercar", bodyTypeDefault: "coupe" },
+  { id: "nissan-leaf", brandId: "nissan", name: "Leaf", slug: "leaf", segment: "compact", bodyTypeDefault: "hatchback" },
+  { id: "nissan-navara", brandId: "nissan", name: "Navara", slug: "navara", segment: "pickup", bodyTypeDefault: "pickup" },
 ];
 
 // ─── Mercedes ML 63 AMG trims (normalized as trims, not brands) ───
