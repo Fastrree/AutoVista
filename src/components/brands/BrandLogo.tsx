@@ -16,6 +16,10 @@ const realLogoBrands = new Set([
   "astonmartin",
   "bentley",
   "rollsroyce",
+  "tesla",
+  "byd",
+  "aurus",
+  "jeep",
 ]);
 
 interface BrandLogoProps {
