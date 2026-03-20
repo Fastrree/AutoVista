@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
+import { GalleryGridModal } from "@/components/gallery/GalleryGridModal";
 import type { ListingImage } from "@/types/listing";
 import styles from "./DetailGallery.module.css";
 
@@ -12,10 +13,17 @@ interface DetailGalleryProps {
 }
 
 export function DetailGallery({ images, brandName, title }: DetailGalleryProps) {
+  const [gridOpen, setGridOpen] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const openLightbox = (index: number) => {
+  // Click hero/thumbs → open grid modal
+  const openGrid = () => {
+    setGridOpen(true);
+  };
+
+  // Click a photo in grid → open slider lightbox at that index
+  const openLightboxFromGrid = (index: number) => {
     setLightboxIndex(index);
     setLightboxOpen(true);
   };
@@ -25,11 +33,11 @@ export function DetailGallery({ images, brandName, title }: DetailGalleryProps) 
       <section className={styles.gallery} id="listing-gallery">
         <div
           className={styles.mainImage}
-          onClick={() => openLightbox(0)}
+          onClick={openGrid}
           role="button"
           tabIndex={0}
           aria-label={`Open gallery for ${title}`}
-          onKeyDown={(e) => { if (e.key === "Enter") openLightbox(0); }}
+          onKeyDown={(e) => { if (e.key === "Enter") openGrid(); }}
         >
           {images[0] ? (
             <>
@@ -54,10 +62,10 @@ export function DetailGallery({ images, brandName, title }: DetailGalleryProps) 
               <div
                 key={i}
                 className={styles.thumb}
-                onClick={() => openLightbox(i)}
+                onClick={openGrid}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === "Enter") openLightbox(i); }}
+                onKeyDown={(e) => { if (e.key === "Enter") openGrid(); }}
               >
                 <img src={img.url} alt={img.alt || `Photo ${i + 1}`} />
               </div>
@@ -65,10 +73,10 @@ export function DetailGallery({ images, brandName, title }: DetailGalleryProps) 
             {images.length > 6 && (
               <div
                 className={styles.thumbMore}
-                onClick={() => openLightbox(6)}
+                onClick={openGrid}
                 role="button"
                 tabIndex={0}
-                onKeyDown={(e) => { if (e.key === "Enter") openLightbox(6); }}
+                onKeyDown={(e) => { if (e.key === "Enter") openGrid(); }}
               >
                 +{images.length - 6}
               </div>
@@ -77,6 +85,17 @@ export function DetailGallery({ images, brandName, title }: DetailGalleryProps) 
         )}
       </section>
 
+      {/* Step 1: Vertical grid modal (cars.com style) */}
+      {gridOpen && (
+        <GalleryGridModal
+          images={images}
+          title={title}
+          onClose={() => setGridOpen(false)}
+          onSelectImage={(index) => openLightboxFromGrid(index)}
+        />
+      )}
+
+      {/* Step 2: Slider lightbox (prev/next navigation) */}
       {lightboxOpen && (
         <GalleryLightbox
           images={images}
