@@ -26,6 +26,24 @@
   background: radial-gradient(ellipse, rgba(0, 168, 138, 0.06) 0%, transparent 70%);
 }
 
+.heroCar {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 700px;
+  width: 90%;
+  z-index: 0;
+  opacity: 0.35;
+  animation: heroFloat 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+}
+
 .heroInner {
   position: relative;
   z-index: 1;
@@ -166,17 +184,15 @@
 }
 
 .brandIcon {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: var(--text-xl);
   color: var(--accent);
   background: var(--accent-muted);
   border-radius: var(--radius-md);
+  padding: var(--space-xs);
 }
 
 .brandName {
@@ -323,6 +339,9 @@
 
 /* ═══ Responsive ═══ */
 @media (max-width: 768px) {
+  .heroCar {
+    display: none;
+  }
   .heroTitle {
     font-size: var(--text-3xl);
   }

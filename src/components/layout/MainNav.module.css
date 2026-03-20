@@ -68,6 +68,25 @@
   background: var(--accent-muted);
 }
 
+.linkActive {
+  color: var(--accent-text);
+  background: var(--accent-muted);
+  font-weight: 600;
+  position: relative;
+}
+
+.linkActive::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
 /* Actions */
 .actions {
   display: flex;

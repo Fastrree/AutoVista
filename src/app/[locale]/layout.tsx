@@ -75,7 +75,7 @@ export default async function LocaleLayout({
               <main style={{ minHeight: "calc(100vh - var(--nav-height) - 200px)", paddingTop: "var(--nav-height)" }}>
                 {children}
               </main>
-              <Footer dict={dict} />
+              <Footer locale={locale} dict={dict} />
               <ScrollToTop />
             </CompareProvider>
           </FavoritesProvider>

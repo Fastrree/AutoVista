@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { brands } from "@/data/catalog/brands";
 import { getListings } from "@/data/seed";
 import { ListingCard } from "@/components/listings/ListingCard";
+import { BrandLogo } from "@/components/brands/BrandLogo";
 import { formatPrice } from "@/i18n/formatters";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -31,6 +32,32 @@ export default async function HomePage({
       {/* === HERO === */}
       <section className={styles.hero} id="hero-section">
         <div className={styles.heroGlow} />
+        {/* Car silhouette */}
+        <svg className={styles.heroCar} viewBox="0 0 800 300" fill="none" aria-hidden="true">
+          {/* Road reflection */}
+          <ellipse cx="400" cy="280" rx="350" ry="12" fill="var(--accent)" opacity="0.04" />
+          {/* Car body */}
+          <path d="M120 200 C120 200 140 170 180 155 L280 130 C300 120 340 100 380 95 L520 90 C560 90 590 95 610 110 L660 140 C680 150 700 165 710 185 L720 200 Z" fill="var(--bg-card)" stroke="var(--border)" strokeWidth="1.5" />
+          {/* Roof */}
+          <path d="M280 130 C300 105 340 85 400 80 L500 80 C530 82 555 90 575 100 L610 110" stroke="var(--text-tertiary)" strokeWidth="1" fill="none" opacity="0.3" />
+          {/* Windows */}
+          <path d="M290 128 C310 108 345 92 390 88 L480 86 C510 88 530 92 548 100 L580 112 L540 118 L290 128 Z" fill="var(--accent)" opacity="0.08" />
+          <path d="M460 86 L460 118" stroke="var(--text-tertiary)" strokeWidth="0.8" opacity="0.2" />
+          {/* Headlight */}
+          <ellipse cx="700" cy="180" rx="14" ry="10" fill="var(--accent)" opacity="0.6" />
+          <ellipse cx="700" cy="180" rx="8" ry="5" fill="var(--accent)" opacity="0.9" />
+          {/* Taillight */}
+          <rect x="122" y="178" width="16" height="8" rx="3" fill="#ef4444" opacity="0.5" />
+          {/* Wheels */}
+          <circle cx="230" cy="210" r="28" fill="var(--bg-primary)" stroke="var(--text-tertiary)" strokeWidth="2" />
+          <circle cx="230" cy="210" r="18" stroke="var(--text-tertiary)" strokeWidth="1.5" fill="var(--bg-card)" />
+          <circle cx="230" cy="210" r="6" fill="var(--accent)" opacity="0.5" />
+          <circle cx="620" cy="210" r="28" fill="var(--bg-primary)" stroke="var(--text-tertiary)" strokeWidth="2" />
+          <circle cx="620" cy="210" r="18" stroke="var(--text-tertiary)" strokeWidth="1.5" fill="var(--bg-card)" />
+          <circle cx="620" cy="210" r="6" fill="var(--accent)" opacity="0.5" />
+          {/* Ground line */}
+          <line x1="100" y1="238" x2="740" y2="238" stroke="var(--border)" strokeWidth="1" strokeDasharray="6 4" opacity="0.3" />
+        </svg>
         <div className={`${styles.heroInner} container`}>
           <h1 className={styles.heroTitle}>{dict.home.heroTitle}</h1>
           <p className={styles.heroSubtitle}>{dict.home.heroSubtitle}</p>
@@ -83,7 +110,7 @@ export default async function HomePage({
                 className={styles.brandCard}
                 id={`brand-${brand.id}`}
               >
-                <span className={styles.brandIcon}>{brand.name.charAt(0)}</span>
+                <span className={styles.brandIcon}><BrandLogo brandId={brand.id} fallback={brand.name} size={32} /></span>
                 <span className={styles.brandName}>{brand.name}</span>
                 <span className={styles.brandCount}>{count} {locale === "tr" ? "ilan" : "listings"}</span>
               </Link>

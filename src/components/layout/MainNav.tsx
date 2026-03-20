@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "@/components/ThemeProvider";
 import { locales, localeNames, type Locale } from "@/i18n/config";
 import { useState, useEffect } from "react";
@@ -9,6 +10,7 @@ import styles from "./MainNav.module.css";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function MainNav({ locale, dict }: { locale: Locale; dict: any }) {
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -32,16 +34,16 @@ export function MainNav({ locale, dict }: { locale: Locale; dict: any }) {
 
         {/* Desktop Links */}
         <div className={styles.links}>
-          <Link href={`/${locale}`} className={styles.link} id="nav-home">
+          <Link href={`/${locale}`} className={`${styles.link} ${pathname === `/${locale}` ? styles.linkActive : ""}`} id="nav-home">
             {dict.nav.home}
           </Link>
-          <Link href={`/${locale}/kesfet`} className={styles.link} id="nav-explore">
+          <Link href={`/${locale}/kesfet`} className={`${styles.link} ${pathname.includes("/kesfet") ? styles.linkActive : ""}`} id="nav-explore">
             {dict.nav.explore}
           </Link>
-          <Link href={`/${locale}/favoriler`} className={styles.link} id="nav-favorites">
+          <Link href={`/${locale}/favoriler`} className={`${styles.link} ${pathname.includes("/favoriler") ? styles.linkActive : ""}`} id="nav-favorites">
             {dict.nav.favorites}
           </Link>
-          <Link href={`/${locale}/karsilastir`} className={styles.link} id="nav-compare">
+          <Link href={`/${locale}/karsilastir`} className={`${styles.link} ${pathname.includes("/karsilastir") ? styles.linkActive : ""}`} id="nav-compare">
             {dict.nav.compare}
           </Link>
         </div>
